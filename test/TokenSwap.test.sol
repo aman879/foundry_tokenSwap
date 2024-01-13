@@ -127,7 +127,7 @@ contract TokenSwapTest is Test {
 
         setUpToken();
         vm.prank(owner);
-        ts.setExchangeRate(tokenA, tokenB, 1, 2);
+        ts.setExchangeRate(tokenA, tokenB, 50, 20);
 
         vm.startPrank(tokenHolder);
 
@@ -150,7 +150,7 @@ contract TokenSwapTest is Test {
         vm.expectEmit(true, true, true, true);
         emit Swap(tokenA, tokenB, tokenHolder, 5, 4);
         ts.swap(tokenA, tokenB, 5);
-
+        
         // balance of tokenA should be 95 and tokenB should be 104
         assertEq(t1.balanceOf(tokenHolder), 95);
         assertEq(t2.balanceOf(tokenHolder), 104);

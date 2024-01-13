@@ -76,8 +76,9 @@ contract TokenSwap is Ownable{
         external
         onlyValidToken(_tokenFrom, _tokenTo) 
         onlyNonZeroAmount(_amountExchange)
-        {
-            uint256 amountToTransfer = _amountExchange - exchangeRate[_tokenFrom][_tokenTo];
+        {   
+            uint256 rate = 100 - exchangeRate[_tokenFrom][_tokenTo];
+            uint256 amountToTransfer = _amountExchange - ((_amountExchange * 1e18) /  ( rate * 1e17));
 
             IERC20 tokenFrom = IERC20(_tokenFrom);
             IERC20 tokenTo = IERC20(_tokenTo);
